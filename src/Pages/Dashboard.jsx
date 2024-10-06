@@ -1,9 +1,9 @@
 // Dashboard.js
 import React, { useState } from "react";
-import Sidebar from "./Sidebar";
-import HallOverview from "./HallOverview";
-import ManageHalls from "./ManageHalls";
-import BookingRequests from "./BookingRequests";
+import Sidebar from "../components/Sidebar";
+import HallOverview from "../components/HallOverview";
+import ManageHalls from "../components/ManageHalls";
+import BookingRequests from "../components/BookingRequests";
 
 const Dashboard = () => {
   const [activeTab, setActiveTab] = useState("overview");

@@ -1,4 +1,3 @@
-// HallOverview.js
 import React from "react";
 
 const HallOverview = ({ halls, bookings }) => {
@@ -8,6 +7,11 @@ const HallOverview = ({ halls, bookings }) => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {halls.map((hall) => (
           <div key={hall.id} className="bg-white rounded-lg shadow-md p-6 transition duration-300 ease-in-out transform hover:scale-105 hover:shadow-lg">
+            <img 
+              src={hall.imageUrl} 
+              alt={hall.name} 
+              className="w-full h-40 object-cover rounded-t-lg mb-4" 
+            />
             <h3 className="text-xl font-semibold mb-2 text-[#F64E60]">{hall.name}</h3>
             <p className="text-gray-600 mb-2">{hall.description}</p>
             <p className="text-gray-600 font-bold">Capacity: <span className="text-[#F64E60]">{hall.capacity}</span></p>
