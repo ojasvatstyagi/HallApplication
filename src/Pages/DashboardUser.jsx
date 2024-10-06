@@ -1,11 +1,11 @@
 import HallBookingForm from "../components/HallBookingForm"
-import Sidebar from "../components/Sidebar"
+import Navbar from "../components/Navbar"
 
 
 const DashboardUser = () => {
     return (
         <>
-        <Sidebar />
+        <Navbar />
         <HallBookingForm />
         </>
     )

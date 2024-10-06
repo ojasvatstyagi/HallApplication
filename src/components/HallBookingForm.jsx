@@ -33,9 +33,9 @@ const HallBookingForm = () => {
   };
 
   return (
-    <div className="max-w-md mx-auto p-6 bg-white rounded-lg shadow-md">
+    <div className="max-w-4xl mx-auto p-6 bg-white rounded-lg shadow-md">
       <h2 className="text-2xl font-semibold mb-4">Request Hall Booking</h2>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div className="mb-4">
           <label className="block text-sm font-medium text-gray-700 mb-1">Hall Name</label>
           <input
@@ -107,7 +107,7 @@ const HallBookingForm = () => {
           />
         </div>
 
-        <div className="mb-4">
+        <div className="mb-4 col-span-full">
           <label className="block text-sm font-medium text-gray-700 mb-1">Upload Verification Document</label>
           <input
             type="file"
@@ -118,7 +118,7 @@ const HallBookingForm = () => {
           />
         </div>
 
-        <button type="submit" className="w-full bg-[#F64E60] text-white py-2 rounded-md hover:bg-[#F64E60]/80 transition duration-200">
+        <button type="submit" className="w-full bg-[#F64E60] text-white py-2 rounded-md hover:bg-[#F64E60]/80 transition duration-200 col-span-full">
           Book Hall
         </button>
       </form>

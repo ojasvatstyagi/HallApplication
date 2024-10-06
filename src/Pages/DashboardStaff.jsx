@@ -3,9 +3,10 @@ import React, { useState } from "react";
 import Sidebar from "../components/Sidebar";
 import HallOverview from "../components/HallOverview";
 import ManageHalls from "../components/ManageHalls";
-import BookingRequests from "../components/BookingRequests";
+import BookingRequestsStaff from "../components/BookingRequestsStaff";
+import Navbar from "../components/Navbar";
 
-const Dashboard = () => {
+const DashboardStaff = () => {
   const [activeTab, setActiveTab] = useState("overview");
   const [halls, setHalls] = useState([
     { id: 1, name: "Main Auditorium", description: "Large hall with stage and AV equipment", capacity: 500 },
@@ -72,7 +73,7 @@ const Dashboard = () => {
         )}
 
         {activeTab === "requests" && (
-          <BookingRequests 
+          <BookingRequestsStaff 
             requests={requests} 
             handleAcceptRequest={handleAcceptRequest} 
             handleRejectRequest={handleRejectRequest} 
@@ -83,4 +84,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default DashboardStaff;

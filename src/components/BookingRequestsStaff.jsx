@@ -1,7 +1,7 @@
 // BookingRequests.js
 import React from "react";
 
-const BookingRequests = ({ requests, handleAcceptRequest, handleRejectRequest }) => {
+const BookingRequestsStaff = ({ requests, handleAcceptRequest, handleRejectRequest }) => {
   return (
     <div>
         <h2 className="text-2xl font-semibold mb-4">Booking Requests</h2>
@@ -58,4 +58,4 @@ const BookingRequests = ({ requests, handleAcceptRequest, handleRejectRequest })
   );
 };
 
-export default BookingRequests;
+export default BookingRequestsStaff;

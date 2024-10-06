@@ -1,8 +1,8 @@
-import Dashboard from './Pages/Dashboard'
+import DashboardStaff from './Pages/DashboardStaff'
 function App() {
   return (
     <> 
-    <Dashboard />
+    <DashboardStaff />
     </>
   )
 }
