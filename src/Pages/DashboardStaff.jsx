@@ -1,12 +1,10 @@
-// Dashboard.js
 import React, { useState } from "react";
 import Sidebar from "../components/Sidebar";
 import HallOverview from "../components/HallOverview";
 import ManageHalls from "../components/ManageHalls";
 import BookingRequestsStaff from "../components/BookingRequestsStaff";
-import Navbar from "../components/Navbar";
 
-const DashboardStaff = () => {
+const DashboardStaff = ({sb,setSidebar}) => {
   const [activeTab, setActiveTab] = useState("overview");
   const [halls, setHalls] = useState([
     { id: 1, name: "Main Auditorium", description: "Large hall with stage and AV equipment", capacity: 500 },
@@ -51,16 +49,16 @@ const DashboardStaff = () => {
   };
 
   return (
-    <div className="flex h-screen bg-gray-100">
+    <div className="flex  h-screen pt-20 bg-gray-100">
       {/* Sidebar */}
-      <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} />
+      <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} show={sb} setShow = {setSidebar} />
 
       {/* Main content */}
-      <div className="flex-1 p-10 overflow-y-auto">
+      <div className="flex-1 p-10 overflow-y-scroll">
         <h1 className="text-3xl font-bold mb-8">Dashboard</h1>
 
         {activeTab === "overview" && (
-          <HallOverview halls={halls} bookings={bookings} />
+          <HallOverview halls={halls} bookings={bookings} />  
         )}
 
         {activeTab === "manage" && (

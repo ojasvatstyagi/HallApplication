@@ -5,7 +5,7 @@ const BookingRequestsStaff = ({ requests, handleAcceptRequest, handleRejectReque
   return (
     <div>
         <h2 className="text-2xl font-semibold mb-4">Booking Requests</h2>
-        <div className="bg-white rounded-lg shadow-md overflow-hidden">
+        <div className="rounded-lg shadow-md w-full overflow-x-auto">
           <table className="w-full">
             <thead className="bg-gray-50">
               <tr>
