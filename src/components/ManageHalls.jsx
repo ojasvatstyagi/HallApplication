@@ -11,7 +11,7 @@ const ManageHalls = ({ halls, handleAddHall, handleUpdateHall, handleDeleteHall 
         >
             <FiPlusCircle className="inline-block mr-2" /> Add New Hall
         </button>
-        <div className="bg-white rounded-lg shadow-md overflow-hidden">
+        <div className="rounded-lg shadow-md w-full overflow-x-auto">
             <table className="w-full">
             <thead className="bg-gray-50">
                 <tr>

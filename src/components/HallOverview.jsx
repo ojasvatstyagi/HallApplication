@@ -23,7 +23,7 @@ const HallOverview = ({ halls, bookings }) => {
       </div>
 
       <h2 className="text-2xl font-semibold mt-12 mb-4">Current Bookings</h2>
-      <div className="bg-white rounded-lg shadow-md overflow-hidden">
+      <div className="rounded-lg shadow-md w-full overflow-x-auto">
         <table className="w-full">
           <thead className="bg-gray-50">
             <tr>
