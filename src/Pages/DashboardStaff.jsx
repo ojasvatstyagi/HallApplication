@@ -7,9 +7,9 @@ import BookingRequestsStaff from "../components/BookingRequestsStaff";
 const DashboardStaff = ({sb,setSidebar}) => {
   const [activeTab, setActiveTab] = useState("overview");
   const [halls, setHalls] = useState([
-    { id: 1, name: "Main Auditorium", description: "Large hall with stage and AV equipment", capacity: 500 },
-    { id: 2, name: "Conference Room A", description: "Medium-sized room with projector", capacity: 50 },
-    { id: 3, name: "Lecture Hall B", description: "Tiered seating with whiteboard", capacity: 200 },
+    { id: 1, name: "Main Auditorium", description: "Large hall with stage and AV equipment", capacity: 500, image:"" },
+    { id: 2, name: "Conference Room A", description: "Medium-sized room with projector", capacity: 50,image:"" },
+    { id: 3, name: "Lecture Hall B", description: "Tiered seating with whiteboard", capacity: 200,image:"" },
   ]);
   const [bookings, setBookings] = useState([
     { id: 1, hallName: "Main Auditorium", date: "2023-06-15", time: "14:00-16:00", event: "Annual Convocation" },
