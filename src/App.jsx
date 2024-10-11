@@ -6,7 +6,7 @@ function App() {
   const [sidebar,setSidebarVisibility] = useState(false);
   return (
     <> 
-    <Navbar setSidebar={setSidebarVisibility}/>
+    <Navbar sb = {sidebar}setSidebar={setSidebarVisibility}/>
     <DashboardStaff sb={sidebar} setSidebar={setSidebarVisibility}/>
     </>
   )
