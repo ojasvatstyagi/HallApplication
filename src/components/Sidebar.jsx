@@ -9,6 +9,7 @@ const Sidebar = ({ activeTab, setActiveTab,show,setShow }) => {
   useEffect(()=>{
     document.addEventListener('mousedown',(event)=>{
       //this checks whether the current clicked item comes in area of sidebar
+      if(event.target.id == "menubutton")return;
       if(sidebarref.current && !sidebarref.current.contains(event.target))
         setShow(false);
     })
