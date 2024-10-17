@@ -33,7 +33,7 @@ const HallBookingForm = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto p-6 bg-white rounded-lg shadow-md">
+    <div className="max-w-4xl pt-24 mx-auto p-6 bg-white rounded-lg shadow-md">
       <h2 className="text-2xl font-semibold mb-4">Request Hall Booking</h2>
       <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div className="mb-4">
@@ -53,8 +53,8 @@ const HallBookingForm = () => {
           <DatePicker
             selected={formData.eventDate}
             onChange={handleDateChange}
-            className="mt-1 block w-full border border-gray-300 rounded-md p-2"
-            dateFormat="yyyy/MM/dd"
+            className="block border border-gray-300 rounded-md p-2 w-full"
+            dateFormat="dd-MM-yyyy"
             required
           />
         </div>

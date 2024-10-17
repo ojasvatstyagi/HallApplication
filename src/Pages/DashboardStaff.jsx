@@ -3,8 +3,9 @@ import Sidebar from "../components/Sidebar";
 import HallOverview from "../components/HallOverview";
 import ManageHalls from "../components/ManageHalls";
 import BookingRequestsStaff from "../components/BookingRequestsStaff";
+import Navbar from "../components/Navbar";
 
-const DashboardStaff = ({sb,setSidebar}) => {
+const StaffInterface = ({sb,setSidebar}) => {
   const [activeTab, setActiveTab] = useState("overview");
   const [halls, setHalls] = useState([
     { id: 1, name: "Main Auditorium", description: "Large hall with stage and AV equipment", capacity: 500, image:"" },
@@ -49,7 +50,7 @@ const DashboardStaff = ({sb,setSidebar}) => {
   };
 
   return (
-    <div className="flex  h-screen pt-20 bg-gray-100">
+    <div className="flex  h-screen pt-16 md:pt-20 bg-gray-100">
       {/* Sidebar */}
       <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} show={sb} setShow = {setSidebar} />
 
@@ -81,5 +82,14 @@ const DashboardStaff = ({sb,setSidebar}) => {
     </div>
   );
 };
+const DashboardStaff=()=>{
+  const [sidebar,setSidebarVisibility] = useState(false);
+  return (
+    <>
+      <Navbar sb = {sidebar}setSidebar={setSidebarVisibility}/>
+      <StaffInterface sb={sidebar} setSidebar={setSidebarVisibility}/>
+    </>
+  )
+}
 
 export default DashboardStaff;
