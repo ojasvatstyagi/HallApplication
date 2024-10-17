@@ -1,15 +1,21 @@
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import DashboardStaff from './Pages/DashboardStaff'
-import Navbar from './components/Navbar'
-import { useState } from 'react'
+// import DashboardAdmin from "./Pages/DashboardAdmin"
+import DashboardUser from "./Pages/DashboardUser";
+
 
 function App() {
-  const [sidebar,setSidebarVisibility] = useState(false);
   return (
-    <> 
-    <Navbar sb = {sidebar}setSidebar={setSidebarVisibility}/>
-    <DashboardStaff sb={sidebar} setSidebar={setSidebarVisibility}/>
-    </>
-  )
+    <BrowserRouter>
+      <Routes>
+        <Route path="/">
+          <Route index element={<div>Login</div>} />
+          <Route path="user/portal" element={<DashboardUser />} />
+          <Route path="staff/portal" element={<DashboardStaff />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
 export default App
