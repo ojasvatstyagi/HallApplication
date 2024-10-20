@@ -1,14 +1,16 @@
-import HallBookingForm from "../components/HallBookingForm"
-import Navbar from "../components/Navbar"
-
+import React from 'react';
+import Navbar from '../components/Navbar';
+import HallBookingModel from '../components/HallBookingModel';
 
 const DashboardUser = () => {
-    return (
-        <>
-        <Navbar />
-        <HallBookingForm />
-        </>
-    )
-}
+  return (
+    <>
+      <Navbar />
+      <div className="mt-[70px] md:mt-[100px]"> 
+        <HallBookingModel />
+      </div>
+    </>
+  );
+};
 
-export default DashboardUser
+export default DashboardUser;
