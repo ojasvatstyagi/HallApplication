@@ -13,7 +13,7 @@ const Navbar = ({sb,setSidebar}) => {
   }, []);
 
   return (
-    <nav className="flex h-16 md:h-20 fixed w-full top-0 left-0 z-20  items-center p-2 bg-[#F64E60] text-white">
+    <nav className="flex h-16 md:h-18 fixed w-full top-0 left-0 z-20  items-center p-2 bg-[#F64E60] text-white">
       <RxHamburgerMenu id="menubutton" className="text-2xl block self-center rounded-[4px] ml-2 text-white lg:hidden" onClick={()=>{setSidebar((prev)=>!prev)}}/>
       <div className="text-2xl font-bold lg:ml-8 ml-4">Hall Booking</div>
       <div className="flex items-center ml-auto">

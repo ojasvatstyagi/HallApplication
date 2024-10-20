@@ -16,7 +16,7 @@ const Sidebar = ({ activeTab, setActiveTab,show,setShow }) => {
   },[]);
   return (
     //below ref ={sidebarref} make it store the value of reference of sidebar div
-    <div ref={sidebarref} className={`w-64 bg-[#F64E60] text-white p-6 block h-full lg:block lg:static ${val} fixed z-20`}>
+    <div ref={sidebarref} className={`w-64 bg-[#F64E60] text-white px-6 pt-10 block h-full lg:block lg:static ${val} fixed z-20`}>
       <nav>
         <button
           className={`w-full text-left py-2 px-4 rounded ${activeTab === "overview" ? "bg-white text-[#F64E60]" : ""}`}
