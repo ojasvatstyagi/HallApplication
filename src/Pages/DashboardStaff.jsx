@@ -50,7 +50,7 @@ const StaffInterface = ({sb,setSidebar}) => {
   };
 
   return (
-    <div className="flex  h-screen pt-16 md:pt-20 bg-gray-100">
+    <div className="flex  h-screen pt-12 md:pt-18 bg-gray-100">
       {/* Sidebar */}
       <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} show={sb} setShow = {setSidebar} />
 
