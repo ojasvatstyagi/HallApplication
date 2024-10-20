@@ -2,7 +2,10 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import DashboardStaff from './Pages/DashboardStaff'
 import DashboardAdmin from "./Pages/DashboardAdmin"
 import DashboardUser from "./Pages/DashboardUser";
+import Modal from 'react-modal';
 
+// Initialize modal root element
+Modal.setAppElement('#root');
 
 function App() {
   return (
