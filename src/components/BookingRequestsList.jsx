@@ -54,9 +54,9 @@ const BookingRequestsList = () => {
             </tr>
           </thead>
           <tbody className="bg-white divide-y divide-gray-200">
-            {requests.map((request) => (
+            {requests.map((request,index) => (
               <BookingRequestAdmin 
-                key={request.id} 
+                key={index} 
                 request={request} 
                 onAccept={handleAccept} 
                 onReject={handleReject} 
