@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import HallBookingForm from "../components/HallBookingForm"; // Assuming you have a BookingForm component
+import HallBookingForm from "./HallBookingForm"; // Assuming you have a BookingForm component
 
 const HallBookingModel = () => {
   const [selectedHall, setSelectedHall] = useState(null);

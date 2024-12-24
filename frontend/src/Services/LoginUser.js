@@ -4,7 +4,7 @@ const LoginUser = async ({email,password})=>{
     let userData = {
         email:email,
         password:password,
-        role:"user",
+        role:"staff",
         valid:true
     }
     return userData;
