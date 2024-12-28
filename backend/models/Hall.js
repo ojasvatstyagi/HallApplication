@@ -9,4 +9,4 @@ const hallSchema = new mongoose.Schema({
     support_document: { type: String },
   }, { timestamps: true });
   
-  module.exports = mongoose.model('Hall', hallSchema);
+  export default mongoose.model('Hall', hallSchema);

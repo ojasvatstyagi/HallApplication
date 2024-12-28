@@ -7,4 +7,4 @@ const bookingSchema = new mongoose.Schema({
     end_date: { type: Date, required: true },
   }, { timestamps: true });
   
-  module.exports = mongoose.model('Booking', bookingSchema);
+  export default mongoose.model('Booking', bookingSchema);
