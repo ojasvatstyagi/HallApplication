@@ -1,7 +1,7 @@
 // controllers/request.controller.js
-import Request from '../models/Request';
+import Request from '../models/Request.js';
 
-exports.getRequestsForAdmin = async (req, res) => {
+export const getRequestsForAdmin = async (req, res) => {
   try {
     const requests = await Request.find().populate('user_id hall_id');
     res.status(200).json(requests);
@@ -10,7 +10,7 @@ exports.getRequestsForAdmin = async (req, res) => {
   }
 };
 
-exports.getRequestsForStaff = async (req, res) => {
+export const getRequestsForStaff = async (req, res) => {
   try {
     const requests = await Request.find().sort({ priority: -1 }).populate('user_id hall_id');
     res.status(200).json(requests);
@@ -19,7 +19,7 @@ exports.getRequestsForStaff = async (req, res) => {
   }
 };
 
-exports.addRequest = async (req, res) => {
+export const addRequest = async (req, res) => {
   const { user_id, hall_id, request_for, request_timing, purpose } = req.body;
   try {
     const request = new Request({ user_id, hall_id, request_for, request_timing, purpose });
@@ -30,7 +30,7 @@ exports.addRequest = async (req, res) => {
   }
 };
 
-exports.updateRequestStatus = async (req, res) => {
+export const updateRequestStatus = async (req, res) => {
   const { request_id, status_admin, status_staff, comments } = req.body;
   try {
     const updateData = {};

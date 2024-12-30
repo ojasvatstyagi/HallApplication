@@ -1,9 +1,9 @@
 // controllers/auth.controller.js
-import User from '../models/User';
+import User from '../models/User.js';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 
-exports.login = async (req, res) => {
+export const login = async (req, res) => {
   const { email, password } = req.body;
   try {
     const user = await User.findOne({ email });

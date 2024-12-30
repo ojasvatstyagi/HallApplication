@@ -1,6 +1,6 @@
 // routes/request.routes.js
 import express from 'express';
-const { getRequestsForAdmin, getRequestsForStaff, addRequest, updateRequestStatus } = require('../controllers/request.controller');
+import { getRequestsForAdmin, getRequestsForStaff, addRequest, updateRequestStatus } from '../controllers/request.controller.js';
 const router = express.Router();
 
 router.get('/admin', getRequestsForAdmin);

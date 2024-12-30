@@ -1,7 +1,7 @@
 // controllers/booking.controller.js
-import Booking from '../models/Booking';
+import Booking from '../models/Booking.js';
 
-exports.getBookings = async (req, res) => {
+export const getBookings = async (req, res) => {
   try {
     const bookings = await Booking.find().populate('user_id hall_id request_id');
     res.status(200).json(bookings);
@@ -10,7 +10,7 @@ exports.getBookings = async (req, res) => {
   }
 };
 
-exports.addBooking = async (req, res) => {
+export const addBooking = async (req, res) => {
   const { request_id, user_id, hall_id, start_date, end_date } = req.body;
   try {
     const booking = new Booking({ request_id, user_id, hall_id, start_date, end_date });

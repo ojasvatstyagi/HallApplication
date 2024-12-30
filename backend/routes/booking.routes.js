@@ -1,6 +1,6 @@
 // routes/booking.routes.js
 import express from 'express';
-const { getBookings, addBooking } = require('../controllers/booking.controller');
+import { getBookings, addBooking } from '../controllers/booking.controller.js';
 const router = express.Router();
 
 router.get('/', getBookings);
