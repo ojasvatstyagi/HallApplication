@@ -1,54 +1,69 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Sidebar from "../components/Sidebar";
 import HallOverview from "../components/HallOverview";
 import ManageHalls from "../components/ManageHalls";
 import BookingRequestsStaff from "../components/BookingRequestsStaff";
 import Navbar from "../components/Navbar";
+import axios from 'axios'; // Assuming axios is used for API calls
+import { useSelector } from 'react-redux';
 
 const StaffInterface = ({sb,setSidebar}) => {
   const [activeTab, setActiveTab] = useState("overview");
-  const [halls, setHalls] = useState([
-    { id: 1, name: "Main Auditorium", description: "Large hall with stage and AV equipment", capacity: 500, image:"" },
-    { id: 2, name: "Conference Room A", description: "Medium-sized room with projector", capacity: 50,image:"" },
-    { id: 3, name: "Lecture Hall B", description: "Tiered seating with whiteboard", capacity: 200,image:"" },
-  ]);
-  const [bookings, setBookings] = useState([
-    { id: 1, hallName: "Main Auditorium", date: "2023-06-15", time: "14:00-16:00", event: "Annual Convocation" },
-    { id: 2, hallName: "Conference Room A", date: "2023-06-16", time: "10:00-12:00", event: "Department Meeting" },
-  ]);
-  const [requests, setRequests] = useState([
-    { id: 1, hallName: "Lecture Hall B", date: "2023-06-17", time: "13:00-15:00", event: "Guest Lecture", club: "Science Club", status: "Pending" },
-    { id: 2, hallName: "Main Auditorium", date: "2023-06-18", time: "18:00-21:00", event: "Cultural Night", club: "Arts Society", status: "Pending" },
-  ]);
-  const handleAddHall = () => {
-    // Implement add hall functionality (e.g., open modal)
-    console.log("Add New Hall");
-  };
+  const [halls, setHalls] = useState([]);
+  const [bookings, setBookings] = useState([]);
 
-  const handleUpdateHall = (id) => {
-    const hallToUpdate = halls.find(hall => hall.id === id);
-    if (hallToUpdate) {
-      console.log("Updating hall:", hallToUpdate);
-      // Here you would typically open a modal or navigate to an edit page
+  useEffect(() => {
+    const { userData } = useSelector((state) => state.user);
+    const fetchHalls = async () => {
+      try {
+        const response = await axios.get('/halls');
+        setHalls(response.data);
+      } catch (error) {
+        console.error('Error fetching halls:', error);
+      }
+    };
+
+    const fetchBookings = async () => {
+      try {
+        const response = await axios.get('/bookings');
+        setBookings(response.data);
+      } catch (error) {
+        console.error('Error fetching bookings:', error);
+      }
+    };
+
+    fetchHalls();
+    fetchBookings();
+  }, []);
+
+
+  const handleAddHall = async (hallData) => {
+    try {
+      const response = await axios.post('/admin/halls', hallData);
+      setHalls([...halls, response.data.hall]); // Assuming the response includes the new hall
+    } catch (error) {
+      console.error('Error adding hall:', error);
     }
   };
 
-  const handleDeleteHall = (id) => {
-    setHalls(halls.filter(hall => hall.id !== id));
+  const handleUpdateHall = async (id, hallData) => {
+    try {
+      await axios.put(`/admin/halls/${id}`, hallData);
+      setHalls(halls.map(hall => (hall._id === id ? { ...hall, ...hallData } : hall)));
+    } catch (error) {
+      console.error('Error updating hall:', error);
+    }
   };
 
-  const handleAcceptRequest = (id) => {
-    setRequests(requests.map(request =>
-      request.id === id ? { ...request, status: "Approved (Level 1)" } : request
-    ));
+  const handleDeleteHall = async (id) => {
+    try {
+      await axios.delete(`/admin/halls/${id}`);
+      setHalls(halls.filter(hall => hall._id !== id));
+    } catch (error) {
+      console.error('Error deleting hall:', error);
+    }
   };
-
-  const handleRejectRequest = (id) => {
-    setRequests(requests.map(request =>
-      request.id === id ? { ...request, status: "Rejected" } : request
-    ));
-  };
-
+  
   return (
     <div className="flex  h-screen pt-12 md:pt-18 bg-gray-100">
       {/* Sidebar */}
@@ -62,7 +77,7 @@ const StaffInterface = ({sb,setSidebar}) => {
           <HallOverview halls={halls} bookings={bookings} />  
         )}
 
-        {activeTab === "manage" && (
+        {activeTab === "manage" && userData.role === 'admin' && (
           <ManageHalls 
             halls={halls} 
             handleAddHall={handleAddHall} 
@@ -72,11 +87,7 @@ const StaffInterface = ({sb,setSidebar}) => {
         )}
 
         {activeTab === "requests" && (
-          <BookingRequestsStaff 
-            requests={requests} 
-            handleAcceptRequest={handleAcceptRequest} 
-            handleRejectRequest={handleRejectRequest} 
-          />
+          <BookingRequestsStaff />
         )}
       </div>
     </div>

@@ -1,40 +1,41 @@
-import React from 'react';
-import BookingRequestAdmin from './BookingRequestAdmin'; // Adjust path as necessary
+import React, { useState, useEffect } from 'react';
+import BookingRequestAdmin from './BookingRequestAdmin';
+import axios from 'axios'; // Assuming axios is used for API calls
 
 const BookingRequestsList = () => {
-  // Dummy data for booking requests
-  const requests = [
-    {
-      bookerName: 'John Doe',
-      hallName: 'Main Hall',
-      eventDate: '2024-10-15T00:00:00Z', // ISO format date
-      eventTime: '14:00',
-      verificationFile: new File(['dummy content'], 'verification1.pdf', { type: 'application/pdf' }),
-    },
-    {
-      bookerName: 'Jane Smith',
-      hallName: 'Conference Room A',
-      eventDate: '2024-10-20T00:00:00Z', // ISO format date
-      eventTime: '10:30',
-      verificationFile: new File(['dummy content'], 'verification2.pdf', { type: 'application/pdf' }),
-    },
-    {
-      bookerName: 'Alice Johnson',
-      hallName: 'Banquet Hall',
-      eventDate: '2024-11-05T00:00:00Z', // ISO format date
-      eventTime: '18:00',
-      verificationFile: new File(['dummy content'], 'verification3.pdf', { type: 'application/pdf' }),
-    },
-  ];
+  const [requests, setRequests] = useState([]);
 
-  const handleAccept = (request) => {
-    // Logic to handle accepting the request
-    console.log('Accepted:', request);
+  useEffect(() => {
+    const fetchRequests = async () => {
+      try {
+        const response = await axios.get('/admin/requests');
+        setRequests(response.data);
+      } catch (error) {
+        console.error('Error fetching requests:', error);
+      }
+    };
+
+    fetchRequests();
+  }, []);
+
+  const handleAccept = async (request) => {
+    try {
+      await axios.put(`/admin/requests/${request._id}`, { status_admin: 'accepted' });
+      // Update the requests state to reflect the change
+      setRequests(requests.map(req => (req._id === request._id ? { ...req, status_admin: 'accepted' } : req)));
+    } catch (error) {
+      console.error('Error accepting request:', error);
+    }
   };
 
-  const handleReject = (request) => {
-    // Logic to handle rejecting the request
-    console.log('Rejected:', request);
+  const handleReject = async (request) => {
+    try {
+      await axios.put(`/admin/requests/${request._id}`, { status_admin: 'rejected' });
+      // Update the requests state to reflect the change
+      setRequests(requests.map(req => (req._id === request._id ? { ...req, status_admin: 'rejected' } : req)));
+    } catch (error) {
+      console.error('Error rejecting request:', error);
+    }
   };
 
   return (
@@ -54,9 +55,9 @@ const BookingRequestsList = () => {
             </tr>
           </thead>
           <tbody className="bg-white divide-y divide-gray-200">
-            {requests.map((request,index) => (
-              <BookingRequestAdmin 
-                key={index} 
+            {requests.map((request) => (
+              <BookingRequestAdmin
+                key={request._id}
                 request={request} 
                 onAccept={handleAccept} 
                 onReject={handleReject} 

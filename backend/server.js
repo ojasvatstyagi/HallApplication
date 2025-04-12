@@ -7,6 +7,8 @@ import userRoutes from './routes/user.routes.js'
 import hallRoutes from './routes/hall.routes.js'
 import authRoutes from './routes/auth.routes.js';
 import requestRoutes from './routes/request.routes.js';
+import adminRoutes from './routes/admin.routes.js';
+import staffRoutes from './routes/staff.routes.js';
 import bookingRoutes from './routes/booking.routes.js';
 import { authenticate, authorize } from './middlewares/auth.middleware.js';
 import { errorHandler } from './middlewares/error.middleware.js';
@@ -30,24 +32,21 @@ app.use(cors());
 app.get('/', (req, res) => {
   res.send('Hall Management System Backend API');
 });
-
-
-app.use('/user', userRoutes);
-app.use('/halls', hallRoutes);
-
-app.use('/requests', requestRoutes);
-app.use('/bookings', bookingRoutes);
-
-
+// Route for user authentication
 app.use('/auth', authRoutes);
 
 // Protect routes with authentication middleware
 app.use(authenticate);
 
 // role-based authorization
-// app.use('/admin', authorize(['admin']), require('./routes/admin.routes'));
-// app.use('/staff', authorize(['staff']), require('./routes/staff.routes'));
-// app.use('/user', authorize(['user']), require('./routes/user.routes'));
+app.use('/admin', authorize(['admin']), adminRoutes);
+app.use('/staff', authorize(['staff']), staffRoutes);
+// Apply role-based authorization to user routes
+app.use('/user', userRoutes); //Already applied to specific routes in userRoutes
+
+app.use('/halls', hallRoutes);
+app.use('/requests', requestRoutes);
+app.use('/bookings', bookingRoutes);
 
 // Error handling middleware
 app.use(errorHandler);
